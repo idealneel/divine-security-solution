@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@import "@fontsource/poppins/400.css";
+@import "@fontsource/poppins/600.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/mukta/400.css";
+@import "@fontsource/mukta/700.css";
+
+@theme {
+  --color-primary: #1e3a5f;
+  --color-primary-dark: #152b47;
+  --color-accent: #3b82f6;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-hover: #1ebe5b;
+  --color-off-white: #f6f8fb;
+  --color-slate-body: #334155;
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-devanagari: "Mukta", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-slate-body);
+  line-height: 1.625;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+}
+
+[lang="mr"] body,
+[lang="mr"] h1, [lang="mr"] h2, [lang="mr"] h3, [lang="mr"] h4, [lang="mr"] h5, [lang="mr"] h6 {
+  font-family: var(--font-devanagari);
+}

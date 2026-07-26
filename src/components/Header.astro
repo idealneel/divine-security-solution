@@ -1,0 +1,104 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+import { config } from '../config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+// Get the current page path without the language prefix
+const pathWithoutLang = Astro.url.pathname.replace(/^\/(mr)\/?/, '/') || '/';
+
+const navLinks = [
+  { key: 'nav.services', href: '#services' },
+  { key: 'nav.about', href: '#about' },
+  { key: 'nav.areas', href: '#areas' },
+  { key: 'nav.contact', href: '#contact' },
+] as const;
+---
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+  <div class="max-w-[1100px] mx-auto px-5 md:px-8 flex items-center justify-between h-16">
+    {/* Logo + name */}
+    <a href={translatePath('/')} class="flex items-center gap-2.5 shrink-0">
+      <img src="/photos/logo/logo-shield-lens.png" alt="" class="h-8 w-auto object-contain" />
+      <span class="font-heading font-semibold text-primary text-[15px] leading-tight">{config.businessName}</span>
+    </a>
+
+    {/* Desktop nav */}
+    <nav class="hidden md:flex items-center gap-6">
+      {navLinks.map((link) => (
+        <a href={translatePath('/')} class="text-sm text-slate-body hover:text-primary transition-colors duration-150">
+          {t(link.key)}
+        </a>
+      ))}
+
+      {/* Language toggle */}
+      <div class="flex items-center gap-1 text-sm border-l border-gray-200 pl-4 ml-2">
+        {Object.entries(languages).map(([code, label]) => (
+          <a
+            href={code === 'en' ? pathWithoutLang : `/${code}${pathWithoutLang}`}
+            class:list={[
+              'px-1.5 py-0.5 rounded transition-colors duration-150',
+              code === lang ? 'text-primary font-semibold' : 'text-gray-400 hover:text-primary',
+            ]}
+            aria-current={code === lang ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    </nav>
+
+    {/* Mobile hamburger */}
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 text-primary"
+      aria-label="Menu"
+      aria-expanded="false"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  {/* Mobile menu */}
+  <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
+    <nav class="flex flex-col px-5 py-4 gap-3">
+      {navLinks.map((link) => (
+        <a href={translatePath('/')} class="text-sm text-slate-body hover:text-primary py-1">
+          {t(link.key)}
+        </a>
+      ))}
+      <div class="flex items-center gap-2 pt-2 border-t border-gray-100 mt-2">
+        {Object.entries(languages).map(([code, label]) => (
+          <a
+            href={code === 'en' ? pathWithoutLang : `/${code}${pathWithoutLang}`}
+            class:list={[
+              'px-2 py-1 text-sm rounded',
+              code === lang ? 'text-primary font-semibold bg-blue-50' : 'text-gray-400',
+            ]}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

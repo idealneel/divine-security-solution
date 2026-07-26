@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { config } from '../config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Base title={`${t('privacy.title')} — ${config.businessName}`}>
+  <Header />
+  <main class="max-w-[760px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <h1 class="font-heading font-semibold text-[28px] md:text-[36px] text-primary mb-2">{t('privacy.title')}</h1>
+    <p class="text-sm text-gray-400 mb-10">{t('privacy.lastUpdated')}</p>
+
+    <div class="prose prose-slate max-w-none text-[15px] leading-[1.75] space-y-6">
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">1. Who we are</h2>
+      <p>Divine Security Solution, run by {config.ownerName}, is a service business operating in Raigad, Thane and Mumbai districts. You can reach us via WhatsApp at {config.whatsappNumber}.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">2. What this website collects</h2>
+      <p><strong>Nothing.</strong> We do not set cookies, run analytics, track visitors, or collect any personal data through this website. There are no accounts, no login forms, and no server-side data storage. The enquiry form runs entirely in your browser.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">3. WhatsApp enquiries</h2>
+      <p>When you tap "Send on WhatsApp", your message opens directly in WhatsApp and is sent to us there. That conversation is governed by WhatsApp's (Meta's) own terms and privacy policy. We receive only what you choose to send. We use your enquiry details (name, location, requirement) solely to respond and provide our service. Your information is never sold or shared with third parties.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">4. Hosting</h2>
+      <p>This site is served by a hosting provider (Netlify or Cloudflare Pages), which may process standard technical logs (IP address, browser type) as part of delivering the site. This is standard for any website and is not something we control or use for tracking. Refer to your hosting provider's privacy policy for details.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">5. External links</h2>
+      <p>Font files are self-hosted, so no external requests are made for fonts. The site links to WhatsApp (wa.me) when you use the enquiry feature. WhatsApp's own privacy policy applies to that interaction.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">6. Your rights and contact</h2>
+      <p>If you have any questions about your data, or if you would like us to delete any enquiry conversation, message us on WhatsApp at {config.whatsappNumber}.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">7. Changes</h2>
+      <p>We may update this page from time to time. The date at the top reflects the latest version.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>

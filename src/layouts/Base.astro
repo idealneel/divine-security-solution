@@ -1,0 +1,82 @@
+---
+import '../styles/global.css';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
+import { config } from '../config';
+import LanguagePopup from '../components/LanguagePopup.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+
+const title = Astro.props.title ?? t('meta.title');
+const description = Astro.props.description ?? t('meta.description');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${Astro.site}#business`,
+  name: config.businessName,
+  description: description,
+  url: Astro.site?.toString(),
+  telephone: '+91-9028670145',
+  areaServed: [
+    { '@type': 'District', name: 'Raigad' },
+    { '@type': 'District', name: 'Thane' },
+    { '@type': 'District', name: 'Mumbai' },
+  ],
+  foundingDate: '2012',
+  image: `${Astro.site}photos/hero/pexels-mateusz-feliksik-1896604-13422379.jpg`,
+  priceRange: 'Contact for pricing',
+  sameAs: [],
+  inLanguage: ['en', 'mr'],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    {/* Open Graph */}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={`${Astro.site}photos/hero/pexels-mateusz-feliksik-1896604-13422379.jpg`} />
+    <meta property="og:locale" content={lang === 'mr' ? 'mr_IN' : 'en_US'} />
+    <meta property="og:locale:alternate" content={lang === 'mr' ? 'en_US' : 'mr_IN'} />
+
+    {/* Canonical */}
+    <link rel="canonical" href={canonicalUrl} />
+
+    {/* hreflang alternates */}
+    <link rel="alternate" hreflang="en" href={getAbsoluteLocaleUrl('en', Astro.url.pathname)} />
+    <link rel="alternate" hreflang="mr" href={getAbsoluteLocaleUrl('mr', Astro.url.pathname)} />
+    <link rel="alternate" hreflang="x-default" href={getAbsoluteLocaleUrl('en', Astro.url.pathname)} />
+
+    {/* Sitemap */}
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    {/* JSON-LD */}
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+
+    {/* Favicon */}
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  </head>
+  <body class="min-h-screen bg-white antialiased">
+    <LanguagePopup />
+    <slot />
+  </body>
+</html>

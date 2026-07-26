@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.mimocode/
+project/
+*.jsonl
+.cron-lock
+.DS_Store

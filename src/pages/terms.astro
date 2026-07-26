@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { config } from '../config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Base title={`${t('terms.title')} — ${config.businessName}`}>
+  <Header />
+  <main class="max-w-[760px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <h1 class="font-heading font-semibold text-[28px] md:text-[36px] text-primary mb-2">{t('terms.title')}</h1>
+    <p class="text-sm text-gray-400 mb-10">{t('terms.lastUpdated')}</p>
+
+    <div class="prose prose-slate max-w-none text-[15px] leading-[1.75] space-y-6">
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">1. Information only</h2>
+      <p>This website is for general information purposes. The content (services, areas, photos) is a general showcase of what we offer. It is not a binding offer, quotation, or contract.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">2. No prices or promises on this site</h2>
+      <p>We do not display prices, quotes, or specific commitments on this website. All pricing, scope, timelines, and any commitments are agreed directly with us through WhatsApp or phone, on a per-job basis.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">3. Enquiries</h2>
+      <p>Sending an enquiry through this website (via WhatsApp) does not create a contract or obligation. Work begins only on mutual agreement between you and us.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">4. Third-party products</h2>
+      <p>Equipment brands (cameras, purifiers, EPBX units, biometric machines) mentioned or shown on this site belong to their respective manufacturers. Manufacturer warranties are per the manufacturer's own terms.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">5. Accuracy</h2>
+      <p>We try to keep the information on this site current and accurate, but we do not guarantee that it is error-free or complete.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">6. Limitation of liability</h2>
+      <p>Use of this website is at your own risk. Nothing on this site creates liability beyond what is applicable under Indian law. We are not responsible for any damages arising from use of this website.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">7. Intellectual property</h2>
+      <p>Site content, text, and images belong to Divine Security Solution or are used under license (stock photos per their free licenses). Do not copy, reproduce, or reuse any content without our permission.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">8. Client references</h2>
+      <p>Client names shown on this site (Don Bosco School, Hardcarb Technologies Pvt. Ltd., Rosy Foundation) are displayed with their permission.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">9. Governing law</h2>
+      <p>These terms are governed by the laws of India. Any disputes shall be subject to the jurisdiction of the courts of Maharashtra.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">10. Contact</h2>
+      <p>For any questions about these terms, contact us via WhatsApp at {config.whatsappNumber}.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>

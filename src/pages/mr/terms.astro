@@ -1,0 +1,51 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { config } from '../../config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Base title={`${t('terms.title')} — ${config.businessName}`}>
+  <Header />
+  <main class="max-w-[760px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <h1 class="font-heading font-semibold text-[28px] md:text-[36px] text-primary mb-2">{t('terms.title')}</h1>
+    <p class="text-sm text-gray-400 mb-10">{t('terms.lastUpdated')}</p>
+
+    <div class="prose prose-slate max-w-none text-[15px] leading-[1.75] space-y-6">
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">1. फक्त माहिती</h2>
+      <p>ही वेबसाइट सामान्य माहिती उद्देशांसाठी आहे. यातील सामग्री (सेवा, क्षेत्र, फोटो) आम्ही काय ऑफर करतो याचे सामान्य प्रदर्शन आहे. ही बंधनकारक ऑफर, कोटेशन किंवा करार नाही.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">2. या साइटवर किंमती किंवा वचने नाहीत</h2>
+      <p>आम्ही या वेबसाइटवर किंमती, कोट्स किंवा विशिष्ट वचने दर्शवत नाही. सर्व किंमत, व्याप्ती, वेळापत्रक आणि कोणतेही वचन थेट आमच्याशी WhatsApp किंवा फोनद्वारे, प्रत्येक कामाच्या आधारावर सहमत केले जाते.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">3. चौकशी</h2>
+      <p>या वेबसाइटद्वारे (WhatsApp द्वारे) चौकशी पाठवणे हे करार किंवा बंधन तयार करत नाही. काम फक्त तुमच्या आणि आमच्यातील परस्पर संमतीने सुरू होते.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">4. तृतीय-पक्ष उत्पादने</h2>
+      <p>या साइटवर नमूद केलेली किंवा दर्शवलेली उपकरणे ब्रँड (कॅमेरे, प्युरिफायर, EPBX युनिट, बायोमेट्रिक मशीन) त्यांच्या संबंधित निर्मात्यांच्या मालकीची आहेत. निर्मात्याची वॉरंटी त्यांच्या स्वतःच्या अटींनुसार आहे.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">5. अचूकता</h2>
+      <p>आम्ही या साइटवरील माहिती अद्ययावत आणि अचूक ठेवण्याचा प्रयत्न करतो, परंतु ती त्रुटी-मुक्त किंवा संपूर्ण आहे याची हमी आम्ही देत नाही.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">6. दायित्वाची मर्यादा</h2>
+      <p>या वेबसाइटचा वापर तुमच्या स्वतःच्या जोखमीवर आहे. या साइटवरील काहीही भारतीय कायद्यांतर्गत लागू होण्यापेक्षा अधिक दायित्व निर्माण करत नाही.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">7. बौद्धिक संपदा</h2>
+      <p>साइट सामग्री, मजकूर आणि प्रतिमा Divine Security Solution च्या मालकीच्या आहेत किंवा परवान्यांतर्गत वापरल्या जातात (स्टॉक फोटो त्यांच्या मोफत परवान्यांनुसार). आमच्या परवानगीशिवाय कोणतीही सामग्री कॉपी, पुनरुत्पादन किंवा पुनर्वापर करू नका.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">8. ग्राहक संदर्भ</h2>
+      <p>या साइटवर दर्शवलेली ग्राहक नावे (Don Bosco School, Hardcarb Technologies Pvt. Ltd., Rosy Foundation) त्यांच्या परवानगीने दर्शवली आहेत.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">9. कायदा अधिकार क्षेत्र</h2>
+      <p>हे अटी भारताच्या कायद्यांनुसार नियंत्रित केले जातात. कोणतेही वाद महाराष्ट्रातील न्यायालयांच्या अधिकार क्षेत्रातील असतील.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">10. संपर्क</h2>
+      <p>या अटींबद्दल कोणतेही प्रश्न असल्यास, आम्हाला WhatsApp वर {config.whatsappNumber} या क्रमांकावर संपर्क साधा.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>

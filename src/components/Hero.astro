@@ -1,0 +1,41 @@
+---
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
+<section class="bg-white">
+  <div class="max-w-[1100px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+      {/* Text */}
+      <div class="flex-1 text-center md:text-left">
+        <h1 class="font-heading font-semibold text-[32px] md:text-[48px] leading-[1.15] text-primary mb-5">
+          {t('hero.title')}
+        </h1>
+        <p class="text-slate-body text-[16px] md:text-[17px] leading-relaxed mb-6 max-w-[520px] mx-auto md:mx-0">
+          {t('hero.subtitle')}
+        </p>
+        <div class="flex items-center justify-center md:justify-start">
+          <a
+            href="#contact"
+            class="inline-flex items-center gap-2 bg-whatsapp hover:bg-whatsapp-hover text-white font-medium px-6 py-3 rounded-lg transition-colors duration-150"
+          >
+            {t('hero.cta')}
+          </a>
+        </div>
+      </div>
+
+      {/* Hero photo */}
+      <div class="flex-1 max-w-[480px] w-full">
+        <img
+          src="/photos/hero/pexels-mateusz-feliksik-1896604-13422379.jpg"
+          alt="CCTV cameras installed on a wall"
+          class="w-full rounded-lg object-cover aspect-[3/2]"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+import { config } from '../../config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Base title={`${t('privacy.title')} — ${config.businessName}`}>
+  <Header />
+  <main class="max-w-[760px] mx-auto px-5 md:px-8 py-16 md:py-24">
+    <h1 class="font-heading font-semibold text-[28px] md:text-[36px] text-primary mb-2">{t('privacy.title')}</h1>
+    <p class="text-sm text-gray-400 mb-10">{t('privacy.lastUpdated')}</p>
+
+    <div class="prose prose-slate max-w-none text-[15px] leading-[1.75] space-y-6">
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">1. आम्ही कोण आहोत</h2>
+      <p>Divine Security Solution, {config.ownerName} यांच्याद्वारे चालवले जाते, हा रायगड, ठाणे आणि मुंबई जिल्ह्यांमध्ये कार्यरत सेवा व्यवसाय आहे. तुम्ही WhatsApp वर {config.whatsappNumber} या क्रमांकावर आमच्याशी संपर्क साधू शकता.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">2. ही वेबसाइट काय गोळा करते</h2>
+      <p><strong>काहीही नाही.</strong> आम्ही कुकीज सेट करत नाही, अनॅलिटिक्स चालवत नाही, भेटीदारांचा मागोवा घेत नाही, किंवा या वेबसाइटद्वारे कोणताही वैयक्तिक डेटा गोळा करत नाही. कोणतेही खाते, लॉगिन फॉर्म किंवा सर्व्हर-साइड डेटा स्टोरेज नाही. चौकशी फॉर्म पूर्णपणे तुमच्या ब्राउझरमध्ये चालतो.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">3. WhatsApp चौकशी</h2>
+      <p>तुम्ही "WhatsApp वर पाठवा" दाबल्यावर, तुमचा संदेश थेट WhatsApp मध्ये उघडतो आणि आम्हाला तेथे पाठवला जातो. ती संवाद WhatsApp च्या (Meta च्या) स्वतःच्या अटी आणि गोपनीयता धोरणाद्वारे नियंत्रित केली जाते. आम्हाला फक्त तुम्ही पाठवण्याचा निर्णय घेतलेला डेटा मिळतो. आम्ही तुमच्या चौकशीचा तपशील (नाव, ठिकाण, गरज) फक्त प्रतिसाद देण्यासाठी आणि आमची सेवा प्रदान करण्यासाठी वापरतो. तुमची माहिती कधीही विकली जात नाही किंवा तृतीय पक्षांसह शेअर केली जात नाही.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">4. होस्टिंग</h2>
+      <p>ही साइट होस्टिंग प्रदात्याद्वारे (Netlify किंवा Cloudflare Pages) सर्व्ह केली जाते, जो साइट वितरित करण्याचा भाग म्हणून मानक तांत्रिक लॉग (IP पत्ता, ब्राउझर प्रकार) प्रक्रिया करू शकतो. हे कोणत्याही वेबसाइटसाठी मानक आहे आणि आम्ही याचा मागोवा घेण्यासाठी किंवा वापर करण्यासाठी नियंत्रण करत नाही.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">5. बाह्य दुवे</h2>
+      <p>फॉन्ट फाइल्स स्व-होस्ट केल्या आहेत, त्यामुळे फॉन्टसाठी बाह्य विनंत्या केल्या जात नाहीत. तुम्ही चौकशी वैशिष्ट्य वापरल्यास साइट WhatsApp (wa.me) शी लिंक करते. WhatsApp चे स्वतःचे गोपनीयता धोरण त्या संवादाला लागू होते.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">6. तुमचे हक्क आणि संपर्क</h2>
+      <p>तुम्हाला तुमच्या डेटाबद्दल काही प्रश्न असल्यास, किंवा तुम्हाला कोणतीही चौकशी संवाद हटवून टाकायची असल्यास, आम्हाला WhatsApp वर {config.whatsappNumber} या क्रमांकावर संदेश पाठवा.</p>
+
+      <h2 class="font-heading font-semibold text-[20px] text-primary mt-8 mb-3">7. बदल</h2>
+      <p>आम्ही वेळोवेळी हे पृष्ठ अपडेट करू शकतो. वरील तारीख नवीनतम आवृत्ती दर्शवते.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>

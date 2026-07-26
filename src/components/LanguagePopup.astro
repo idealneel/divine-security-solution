@@ -1,0 +1,48 @@
+---
+import { languages } from '../i18n/ui';
+---
+
+<div id="lang-popup" class="fixed inset-0 z-[100] bg-black/40 flex items-center justify-center px-5">
+  <div class="bg-white rounded-lg shadow-xl max-w-sm w-full p-8 text-center">
+    <img src="/photos/logo/logo-shield-lens.png" alt="" class="h-12 w-auto object-contain mx-auto mb-5" />
+    <h2 class="font-heading font-semibold text-[20px] text-primary mb-2">Choose your language</h2>
+    <p class="text-sm text-gray-500 mb-6">भाषा निवडा</p>
+    <div class="flex flex-col gap-3">
+      <a
+        href="/"
+        class="lang-choice block w-full py-3 px-4 rounded-lg border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:text-white transition-colors duration-150"
+        data-lang="en"
+      >
+        English
+      </a>
+      <a
+        href="/mr/"
+        class="lang-choice block w-full py-3 px-4 rounded-lg border-2 border-primary text-primary font-medium text-sm hover:bg-primary hover:text-white transition-colors duration-150"
+        data-lang="mr"
+      >
+        मराठी
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const popup = document.getElementById('lang-popup');
+    if (!popup) return;
+
+    // Check if user already chose this session
+    if (sessionStorage.getItem('lang-chosen')) {
+      popup.remove();
+      return;
+    }
+
+    // Handle choice
+    popup.querySelectorAll('.lang-choice').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        sessionStorage.setItem('lang-chosen', 'true');
+        popup.remove();
+      });
+    });
+  })();
+</script>

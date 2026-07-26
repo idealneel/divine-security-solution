@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://divinesecuritysolution.com/sitemap-index.xml

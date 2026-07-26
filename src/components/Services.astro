@@ -1,0 +1,72 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { config } from '../config';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const servicePhotos: Record<string, string> = {
+  cctv: '/photos/cctv/pexels-pppsdavid-7508684.jpg',
+  ro: '/photos/ro/ro-install-red-unit.jpeg',
+  epbx: '/photos/epbx/epbx-wiring-real.jpeg',
+  biometric: '/photos/biometric/biometric-attendance-real.jpeg',
+  amc: '/photos/cctv/pexels-pppsdavid-7508684.jpg',
+};
+---
+
+<section id="services" class="bg-off-white">
+  <div class="max-w-[1100px] mx-auto px-5 md:px-8 py-20 md:py-28">
+    {/* Section heading */}
+    <div class="mb-12">
+      <span class="text-[15px] uppercase tracking-widest text-primary font-medium">{t('services.label')}</span>
+      <div class="w-12 h-[3px] bg-accent mt-2.5 mb-4"></div>
+      <h2 class="font-heading font-semibold text-[30px] md:text-[40px] text-primary">{t('services.heading')}</h2>
+    </div>
+
+    {/* Service cards */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {config.services.map((service) => (
+        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:border-primary/20 transition-all duration-200">
+          <img
+            src={servicePhotos[service.id]}
+            alt={service[lang].title}
+            class="w-full aspect-[4/3] object-cover"
+            loading="lazy"
+          />
+          <div class="p-5">
+            <h3 class="font-heading font-semibold text-[18px] md:text-[20px] text-primary mb-2">
+              {service[lang].title}
+            </h3>
+            <p class="text-sm text-slate-body leading-relaxed mb-4">
+              {service[lang].description}
+            </p>
+            <a
+              href={`#contact`}
+              data-service={service.id}
+              class="enquire-btn inline-block text-sm font-medium text-accent hover:text-primary transition-colors duration-150 border-b border-accent/30 hover:border-primary/30 pb-0.5"
+            >
+              {t('services.enquire')}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.enquire-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const serviceId = btn.getAttribute('data-service');
+      const form = document.getElementById('contact');
+      if (form) {
+        form.scrollIntoView({ behavior: 'smooth' });
+      }
+      if (serviceId) {
+        const checkbox = document.querySelector(`input[value="${serviceId}"]`) as HTMLInputElement;
+        if (checkbox) checkbox.checked = true;
+      }
+    });
+  });
+</script>
