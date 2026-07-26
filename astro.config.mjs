@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://divinesecuritysolution.com',
+  site: 'https://divinesolutions.vercel.app',
 
   vite: {
     plugins: [tailwindcss()],
