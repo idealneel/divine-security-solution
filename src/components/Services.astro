@@ -24,26 +24,26 @@ const servicePhotos: Record<string, string> = {
     </div>
 
     {/* Service cards */}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       {config.services.map((service) => (
-        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:border-primary/20 transition-all duration-200">
+        <div class="bg-white rounded-lg overflow-hidden border border-gray-100 shadow-[0_1px_4px_rgba(0,0,0,0.06)] hover:shadow-[0_2px_8px_rgba(0,0,0,0.1)] hover:border-primary/20 transition-all duration-200 flex flex-col">
           <img
             src={servicePhotos[service.id]}
             alt={service[lang].title}
             class="w-full aspect-[4/3] object-cover"
             loading="lazy"
           />
-          <div class="p-5">
-            <h3 class="font-heading font-semibold text-[18px] md:text-[20px] text-primary mb-2">
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="font-heading font-semibold text-[18px] md:text-[20px] text-primary mb-2 min-h-[48px] md:min-h-[56px]">
               {service[lang].title}
             </h3>
-            <p class="text-sm text-slate-body leading-relaxed mb-4">
+            <p class="text-sm text-slate-body leading-relaxed mb-4 flex-1">
               {service[lang].description}
             </p>
             <a
               href={`#contact`}
               data-service={service.id}
-              class="enquire-btn inline-block text-sm font-medium text-accent hover:text-primary transition-colors duration-150 border-b border-accent/30 hover:border-primary/30 pb-0.5"
+              class="enquire-btn inline-block text-sm font-medium text-accent hover:text-primary transition-colors duration-150 border-b border-accent/30 hover:border-primary/30 pb-0.5 mt-auto"
             >
               {t('services.enquire')}
             </a>

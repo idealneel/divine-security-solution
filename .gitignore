@@ -6,3 +6,5 @@ project/
 *.jsonl
 .cron-lock
 .DS_Store
+
+.vercel
